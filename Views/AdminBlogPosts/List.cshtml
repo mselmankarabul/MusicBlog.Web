@@ -20,14 +20,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var blogpost in Model)
+            @foreach (var blogPost in Model)
             {
                 <tr>
-                    <td>@blogpost.Id</td>
-                    <td>@blogpost.Heading</td>
+                    <td>@blogPost.Id</td>
+                    <td>@blogPost.Heading</td>
                     <td>
                         <div class="d-flex">
-                            @foreach (var tag in blogpost.Tags)
+                            @foreach (var tag in blogPost.Tags)
                             {
                                 <span class="badge bg-secondary me-1">@tag.Name</span>
                             }
@@ -37,7 +37,7 @@
                         <a asp-area=""
                            asp-controller="AdminBlogPosts"
                            asp-action="Edit"
-                        asp-route-id="@blogpost.Id">
+                        asp-route-id="@blogPost.Id">
                             Edit
                         </a>
                     </td>
