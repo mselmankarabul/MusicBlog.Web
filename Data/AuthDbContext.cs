@@ -7,7 +7,7 @@ namespace MusicBlog.Web.Data
 {
     public class AuthDbContext : IdentityDbContext
     {
-        public AuthDbContext(DbContextOptions options) : base(options)
+        public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
         {
         }
 
@@ -63,7 +63,7 @@ namespace MusicBlog.Web.Data
             };
 
             superAdminUser.PasswordHash = new PasswordHasher<IdentityUser>()
-                .HashPassword(superAdminUser, "SuperAdmin@123");
+                .HashPassword(superAdminUser, "superadmin@123");
 
             builder.Entity<IdentityUser>().HasData(superAdminUser);
 

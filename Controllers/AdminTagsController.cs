@@ -3,9 +3,11 @@ using MusicBlog.Web.Models.ViewModels;
 using MusicBlog.Web.Data;
 using MusicBlog.Web.Models.Domain;
 using MusicBlog.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MusicBlog.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminTagsController : Controller
     {
         private readonly ITagRepository tagRepository;
@@ -17,6 +19,7 @@ namespace MusicBlog.Web.Controllers
 
         public MusicBlogDbContext MusicBlogDbContext { get; }
 
+        
         [HttpGet]
         public IActionResult Add()
         {
@@ -106,6 +109,21 @@ namespace MusicBlog.Web.Controllers
             }
 
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(EditTagRequest editTagRequest)
+        {
+            var deletedTag = await tagRepository.DeleteAsync(editTagRequest.Id);
+
+            if (deletedTag != null)
+            {
+                // Show success notification
+                return RedirectToAction("List");
+            }
+
+            // Show an error notification
+            return RedirectToAction("Edit", new { id = editTagRequest.Id });
         }
     }
 }

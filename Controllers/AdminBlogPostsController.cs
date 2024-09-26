@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicBlog.Web.Models.ViewModels;
 using MusicBlog.Web.Repositories;
 using MusicBlog.Web.Models.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MusicBlog.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminBlogPostsController : Controller
     {
         private readonly ITagRepository tagRepository;

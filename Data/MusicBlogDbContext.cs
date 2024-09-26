@@ -5,7 +5,7 @@ namespace MusicBlog.Web.Data
 {
     public class MusicBlogDbContext : DbContext
     {
-        public MusicBlogDbContext(DbContextOptions options) : base(options)
+        public MusicBlogDbContext(DbContextOptions<MusicBlogDbContext> options) : base(options)
         {
         }
 
